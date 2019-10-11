@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace HashTable
 {
@@ -6,7 +7,27 @@ namespace HashTable
     {
         private Bucket<K, V>[] buckets;
 
+        private const double MaxLoadFactor = 0.75;
+
         private int capacity = 10;
+
+        public double LoadFactor {
+            get
+            {
+                int fullBuckets = buckets.Count(b => b.State == BucketState.Full);
+
+                /*int fullBuckets = 0;
+                foreach( var b in buckets)
+                {
+                    if (b.State == BucketState.Full)
+                    {
+                        fullBuckets++;
+                    }
+                }*/
+
+                return (double)fullBuckets / buckets.Length;
+            }
+        }
 
         public HashTableLinearProbing()
         {
@@ -21,6 +42,11 @@ namespace HashTable
 
         public bool Add(K key, V value)
         {
+            if( LoadFactor > MaxLoadFactor)
+            {
+                Resize();
+            }
+
             // make a new Bucket to contain key, value
             Bucket<K,V> bucket = new Bucket<K, V>(key, value);
 
@@ -36,6 +62,7 @@ namespace HashTable
 
                 if( bucketIndex == initialBucketIndex)
                 {
+                    // THIS SHOULD NEVER HAPPEN
                     return false;
                 }
             }
@@ -72,6 +99,24 @@ namespace HashTable
         {
 
             return false;
+        }
+
+        private void Resize()
+        {
+            // create new array with double the capacity
+            capacity = capacity * 2;
+            var newArray = new Bucket<K, V>[capacity];
+
+            // initialize all elements to empty buckets
+            for (int i = 0; i < newArray.Length; i++)
+            {
+                newArray[i] = new Bucket<K, V>();
+            }
+
+            // TODO 
+            // rehash every bucket and save to new array
+
+
         }
 
         private int Hash(K key)
