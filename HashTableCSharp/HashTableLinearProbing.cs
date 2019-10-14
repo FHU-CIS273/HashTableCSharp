@@ -169,7 +169,9 @@ namespace HashTable
 
         private int Hash(K key)
         {
-            return key.GetHashCode();
+            int hash = key.GetHashCode();
+
+            return hash > 0 ? hash : -hash; 
         }
     }
 }
