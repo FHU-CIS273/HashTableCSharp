@@ -74,6 +74,7 @@ namespace HashTable
             return true;
         }
 
+        // TODO
         // if key is not in hash table throw missing key exeception
         public bool Remove(K key)
         {
@@ -83,6 +84,7 @@ namespace HashTable
             return true;
         }
 
+        // TODO
         // if key is not in hash table throw missing key exeception
         public V Get(K key)
         {
@@ -95,7 +97,7 @@ namespace HashTable
             return default(V);
         }
 
-
+        // TODO
         public bool ContainsKey(K key)
         {
 
@@ -148,7 +150,7 @@ namespace HashTable
         }
 
 
-
+        // TODO
         private void Resize()
         {
             // create new array with double the capacity
