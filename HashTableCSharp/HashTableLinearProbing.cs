@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HashTable
@@ -100,6 +101,53 @@ namespace HashTable
 
             return false;
         }
+
+        public bool ContainsValue(V value)
+        {
+            foreach (var bucket in buckets)
+            {
+                if (bucket.State == BucketState.Full)
+                {
+                    if (bucket.Value.Equals(value)) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public List<K> GetKeys()
+        {
+            var keys = new List<K>();
+
+            foreach(var bucket in buckets)
+            {
+                if( bucket.State == BucketState.Full)
+                {
+                    keys.Add(bucket.Key);
+                }
+            }
+
+            return keys;
+        }
+
+        public List<V> GetValues()
+        {
+            var values = new List<V>();
+
+            foreach (var bucket in buckets)
+            {
+                if (bucket.State == BucketState.Full)
+                {
+                    values.Add(bucket.Value);
+                }
+            }
+
+            return values;
+        }
+
+
 
         private void Resize()
         {

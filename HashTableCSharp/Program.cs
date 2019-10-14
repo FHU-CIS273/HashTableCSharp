@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HashTable
 {
@@ -6,7 +7,9 @@ namespace HashTable
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+
+            
         }
     }
 }
