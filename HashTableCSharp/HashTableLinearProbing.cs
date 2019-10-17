@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace HashTable
 {
-    public class HashTableLinearProbing<K, V>
+    public class HashTableLinearProbing<K, V> : IHashTable<K, V>
     {
         private Bucket<K, V>[] buckets;
 
@@ -104,6 +104,7 @@ namespace HashTable
             return false;
         }
 
+
         public bool ContainsValue(V value)
         {
             foreach (var bucket in buckets)
@@ -134,6 +135,9 @@ namespace HashTable
             return keys;
         }
 
+
+        
+
         public List<V> GetValues()
         {
             var values = new List<V>();
@@ -148,7 +152,6 @@ namespace HashTable
 
             return values;
         }
-
 
         // TODO
         private void Resize()
