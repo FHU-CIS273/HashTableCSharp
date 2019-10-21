@@ -15,5 +15,7 @@ namespace HashTable
         List<K> GetKeys();
         List<V> GetValues();
 
+        double LoadFactor { get; }
+
     }
 }
