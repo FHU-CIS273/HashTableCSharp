@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HashTable
 {
@@ -15,9 +16,9 @@ namespace HashTable
         {
             get
             {
-                int fullBuckets = buckets.Count(b => b.State == BucketState.Full);
+                int fullBuckets = listsOfBuckets.Count(l => l.Count > 0);
 
-                return (double)fullBuckets / buckets.Length;
+                return (double)fullBuckets / listsOfBuckets.Length;
             }
         }
 
